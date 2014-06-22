@@ -1,6 +1,8 @@
 # sublimetext-gulpfile.js
 
-A simple `gulpfile` for Sublime Text package developers to test their XML and JSON files. Tests can be automated through [Travis CI](https://travis-ci.org/). XML support is not yet implemented due to the lack of a XML linter for gulp. You can use [sublimetext-gruntfile.js](https://github.com/idleberg/sublimetext-gruntfile.js/tree/dist) instead.
+A simple `gulpfile` for Sublime Text package developers to test their XML* and JSON files. Tests can be automated through [Travis CI](https://travis-ci.org/).
+
+\* XML support is not yet implemented due to the lack of a XML linter for gulp. You can use [sublimetext-gruntfile.js](https://github.com/idleberg/sublimetext-gruntfile.js/tree/dist) instead.
 
 Supported file types:
 
