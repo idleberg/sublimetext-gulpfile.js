@@ -15,15 +15,15 @@ gulp.task('default', ['json', 'xml']);
 
 gulp.task('json', function(){
       gulp.src([
-            '*.JSON-tmLanguage',
-            '*.sublime-build',
-            '*.sublime-commands',
-            '*.sublime-completions',
-            '*.sublime-keymap',
-            '*.sublime-macro',
-            '*.sublime-menu',
-            '*.sublime-settings',
-            '*.sublime-theme',
+            '**/*.JSON-tmLanguage',
+            '**/*.sublime-build',
+            '**/*.sublime-commands',
+            '**/*.sublime-completions',
+            '**/*.sublime-keymap',
+            '**/*.sublime-macro',
+            '**/*.sublime-menu',
+            '**/*.sublime-settings',
+            '**/*.sublime-theme',
             'messages.json'
         ])
         .pipe(debug({verbose: true}))
@@ -47,15 +47,15 @@ gulp.task('xml', function() {
 
 gulp.task('watch', function () {
    gulp.watch([
-            '*.JSON-tmLanguage',
-            '*.sublime-build',
-            '*.sublime-commands',
-            '*.sublime-completions',
-            '*.sublime-keymap',
-            '*.sublime-macro',
-            '*.sublime-menu',
-            '*.sublime-settings',
-            '*.sublime-theme',
+            '**/*.JSON-tmLanguage',
+            '**/*.sublime-build',
+            '**/*.sublime-commands',
+            '**/*.sublime-completions',
+            '**/*.sublime-keymap',
+            '**/*.sublime-macro',
+            '**/*.sublime-menu',
+            '**/*.sublime-settings',
+            '**/*.sublime-theme',
             'messages.json',
             '!node_modules/**/*.*'
          ],
