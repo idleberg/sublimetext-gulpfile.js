@@ -1,0 +1,15 @@
+{
+  "name": "sublimetext-gulpfile.js",
+  "version" : "0.0.0",
+  "author" : "Jan T. Sott",
+  "license" : "MIT",
+  "private" : true,
+  "devDependencies": {
+    "gulp":           "~3.8.1",
+    "gulp-debug":     "~0.3.0",
+    "gulp-json-lint": "~0.0.1"
+  },
+  "scripts": {
+    "test": "gulp"
+  }
+}
