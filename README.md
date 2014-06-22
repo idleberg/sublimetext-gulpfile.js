@@ -1,7 +1,5 @@
 # sublimetext-gulpfile.js
 
-**This project is work-in-progress, [help](#contributions) is greatly appreciated!**
-
 A simple `gulpfile` for Sublime Text package developers to test their XML and JSON files. Tests can be automated through [Travis CI](https://travis-ci.org/).
 
 Supported file types:
