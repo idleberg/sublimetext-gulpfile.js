@@ -58,7 +58,6 @@ var ymlFiles = [
 ];
 
 // Available tasks
-gulp.task('default', ['lint']);
 gulp.task('lint', ['lint:json', 'lint:xml', 'lint:yml']);
 
 // Lint JSON
