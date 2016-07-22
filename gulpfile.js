@@ -15,6 +15,7 @@ var gulp = require('gulp'),
 
 // Supported files
 var jsonFiles = [
+    '!node_modules/**/*',
     '**/*.JSON-sublime-syntax',
     '**/*.JSON-tmLanguage',
     '**/*.JSON-tmTheme',
@@ -30,6 +31,7 @@ var jsonFiles = [
 ];
 
 var xmlFiles = [
+    '!node_modules/**/*',
     '**/*.plist',
     '**/*.PLIST-sublime-syntax',
     '**/*.PLIST-tmLanguage',
@@ -49,13 +51,11 @@ var xmlFiles = [
 ];
 
 var ymlFiles = [
+    '!node_modules/**/*',
     '**/*.sublime-syntax',
     '**/*.YAML-tmLanguage',
     '**/*.YAML-tmTheme'
 ];
-
-// Exclude node_modules
-var self = '!node_modules/**/*';
 
 // Available tasks
 gulp.task('default', ['lint']);
@@ -63,21 +63,21 @@ gulp.task('lint', ['lint:json', 'lint:xml', 'lint:yml']);
 
 // Lint JSON
 gulp.task('lint:json', function(){
-  return gulp.src(jsonFiles, self)
+  return gulp.src(jsonFiles)
     .pipe(debug({title: 'lint:json'}))
     .pipe(jsonlint())
 });
 
 // Validate XML
 gulp.task('lint:xml', function() {
-  return gulp.src(xmlFiles, self)
+  return gulp.src(xmlFiles)
     .pipe(debug({title: 'lint:xml'}))
     .pipe(xmlVal());
 });
 
 // Validate YAML
 gulp.task('lint:yml', function() {
-  return gulp.src(ymlFiles, self)
+  return gulp.src(ymlFiles)
     .pipe(debug({title: 'lint:yml'}))
     .pipe(ymlVal({ safe: true }));
 });
