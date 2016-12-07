@@ -9,69 +9,76 @@
 // Dependencies
 var gulp = require('gulp'),
     debug = require('gulp-debug'),
-    jsonlint = require('gulp-json-lint');
+    jsonLint = require('gulp-jsonlint');
     ymlVal = require('gulp-yaml-validate');
     xmlVal = require('gulp-xml-validator');
 
 // Supported files
 var jsonFiles = [
-    '!node_modules/**/*',
-    '**/*.JSON-sublime-syntax',
-    '**/*.JSON-tmLanguage',
-    '**/*.JSON-tmTheme',
-    '**/*.sublime-build',
-    '**/*.sublime-commands',
-    '**/*.sublime-completions',
-    '**/*.sublime-keymap',
-    '**/*.sublime-macro',
-    '**/*.sublime-menu',
-    '**/*.sublime-settings',
-    '**/*.sublime-theme',
-    'messages.json'
+    './**/*.JSON-sublime-syntax',
+    './**/*.JSON-tmLanguage',
+    './**/*.JSON-tmTheme',
+    './**/*.sublime-build',
+    './**/*.sublime-commands',
+    './**/*.sublime-completions',
+    './**/*.sublime-keymap',
+    './**/*.sublime-macro',
+    './**/*.sublime-menu',
+    './**/*.sublime-settings',
+    './**/*.sublime-theme',
+    './messages.json',
+    '!node_modules/**/*.json'
 ];
 
 var xmlFiles = [
-    '!node_modules/**/*',
-    '**/*.plist',
-    '**/*.PLIST-sublime-syntax',
-    '**/*.PLIST-tmLanguage',
-    '**/*.PLIST-tmTheme',
-    '**/*.sublime-snippet',
-    '**/*.tmCommand',
-    '**/*.tmLanguage',
-    '**/*.tmPreferences',
-    '**/*.tmSnippet',
-    '**/*.tmTheme',
-    '**/*.xml'
+    './**/*.plist',
+    './**/*.PLIST-sublime-syntax',
+    './**/*.PLIST-tmLanguage',
+    './**/*.PLIST-tmTheme',
+    './**/*.sublime-snippet',
+    './**/*.tmCommand',
+    './**/*.tmLanguage',
+    './**/*.tmPreferences',
+    './**/*.tmSnippet',
+    './**/*.tmTheme',
+    './**/*.xml',
+    '!node_modules/**/*.xml'
 ];
 
 var ymlFiles = [
-    '!node_modules/**/*',
-    '**/*.sublime-syntax',
-    '**/*.YAML-tmLanguage',
-    '**/*.YAML-tmTheme'
+    './**/*.sublime-syntax',
+    './**/*.YAML-tmLanguage',
+    './**/*.YAML-tmTheme',
+    '!node_modules/**/*.yml'
 ];
 
-// Available tasks
-gulp.task('lint', ['lint:json', 'lint:xml', 'lint:yml']);
-
 // Lint JSON
-gulp.task('lint:json', function(){
-  return gulp.src(jsonFiles)
+gulp.task('lint:json', gulp.series(function(done) {
+  gulp.src(jsonFiles)
     .pipe(debug({title: 'lint:json'}))
-    .pipe(jsonlint())
-});
+    .pipe(jsonLint())
+    .pipe(jsonLint.failAfterError())
+    .pipe(jsonLint.reporter());
+  done();
+}));
 
 // Validate XML
-gulp.task('lint:xml', function() {
-  return gulp.src(xmlFiles)
+gulp.task('lint:xml', gulp.series(function(done) {
+  gulp.src(xmlFiles)
     .pipe(debug({title: 'lint:xml'}))
     .pipe(xmlVal());
-});
+  done();
+}));
 
 // Validate YAML
-gulp.task('lint:yml', function() {
-  return gulp.src(ymlFiles)
+gulp.task('lint:yml', gulp.series(function(done) {
+  gulp.src(ymlFiles)
     .pipe(debug({title: 'lint:yml'}))
     .pipe(ymlVal({ safe: true }));
-});
+  done();
+}));
+
+// Available tasks
+gulp.task('lint', gulp.parallel('lint:json', 'lint:xml', 'lint:yml', function(done) {
+  done();
+}));
